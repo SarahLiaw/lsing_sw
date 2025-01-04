@@ -1,0 +1,17 @@
+# Data settings
+train_size: 5000
+validation_size: 1000
+test_size: 1000
+num_features: 10
+
+# Model settings
+hidden_layers: [16, 32, 8]
+num_steps: 50
+
+# Training settings
+learning_rate: 0.01
+max_epochs: 100
+regularizations: [1, 0.1, 0.01, 0.001]
+
+# Output settings
+results_path: "results"

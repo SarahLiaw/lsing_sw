@@ -3,6 +3,9 @@ train_size: 5000
 validation_size: 1000
 test_size: 1000
 num_features: 10
+training_file: "../../data/butterfly/bf_trn_5000_10d.txt"
+validation_file: "../../data/butterfly/bf_val_10000_10d.txt"
+testing_file: "../../data/butterfly/bf_tst_10000_10d.txt"
 
 # Model settings
 hidden_layers: [16, 32, 8]
@@ -14,4 +17,4 @@ max_epochs: 100
 regularizations: [1, 0.1, 0.01, 0.001]
 
 # Output settings
-results_path: "results"
+results_path: "res"

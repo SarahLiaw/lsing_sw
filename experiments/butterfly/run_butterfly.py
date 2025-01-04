@@ -1,4 +1,3 @@
-#%%
 import os
 import torch
 import numpy as np
@@ -11,20 +10,53 @@ import matplotlib.pyplot as plt
 import yaml
 
 
-# Load experiment configuration
+def load_data(file_path):
+    """
+    Load data from a file.
+
+    Args:
+        file_path (str): Path to the dataset file in CSV format.
+
+    Returns:
+        torch.Tensor: Loaded dataset as a PyTorch tensor.
+    """
+    print(f"Loading dataset from {file_path}")
+    data = np.loadtxt(file_path, delimiter=",")
+    return torch.tensor(data, dtype=torch.float32)
+
+
 def load_config(config_path):
+    """
+    Load experiment configuration from a YAML file.
+
+    Args:
+        config_path (str): Path to the configuration file.
+
+    Returns:
+        dict: Configuration parameters as a dictionary.
+    """
+    print(f"Loading configuration from {config_path}")
     with open(config_path, 'r') as file:
         return yaml.safe_load(file)
 
+
 def main():
+    """
+    Main function to execute the Butterfly experiment.
+
+    - Loads configuration and datasets.
+    - Trains models using MonotonicNN for each feature.
+    - Computes and visualizes the precision matrix.
+    - Saves results (matrix and plots) to the output directory.
+    """
     # Load configuration
     config = load_config("config.yaml")
     os.makedirs("results", exist_ok=True)
 
-    # Generate synthetic data for the Butterfly distribution
-    training_data = torch.rand((config["train_size"], config["num_features"]))
-    validation_data = torch.rand((config["validation_size"], config["num_features"]))
-    test_data = torch.rand((config["test_size"], config["num_features"]))
+    # Load datasets
+    training_data = load_data(config["training_file"])
+    validation_data = load_data(config["validation_file"])
+    test_data = load_data(config["testing_file"])
 
     # Initialize fixed map for each feature
     base_map = [
@@ -66,6 +98,7 @@ def main():
     # Log results
     with open(os.path.join("results", "log.txt"), "w") as log_file:
         log_file.write(f"Experiment completed.\nPrecision matrix saved to {matrix_path}.\n")
+
 
 if __name__ == "__main__":
     main()

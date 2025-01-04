@@ -1,2 +1,0 @@
-Experiment completed.
-Precision matrix saved to results/butterfly_matrix.txt.

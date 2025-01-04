@@ -41,20 +41,31 @@ def load_config(config_path):
     with open(config_path, 'r') as file:
         return yaml.safe_load(file)
 
-
 def main():
     """
-    Main function to execute the Butterfly experiment.
+    Main function to execute the experiment.
 
     - Loads configuration and datasets.
     - Trains models using MonotonicNN for each feature.
     - Computes and visualizes the precision matrix.
-    - Saves results (matrix and plots) to the output directory.
+    - Optionally saves trained models.
+    - Saves results (matrix and plots) to a uniquely indexed directory.
     """
     # Load configuration
     config_path = os.path.join(os.path.dirname(__file__), "config.yaml")
     config = load_config(config_path)
-    os.makedirs("results", exist_ok=True)
+
+    # Create uniquely indexed results subdirectory
+    base_results_path = config["results_path"]
+    index = 0
+    while True:
+        results_dir = os.path.join(base_results_path, f"{config['experiment_name']}_{index}")
+        if not os.path.exists(results_dir):
+            os.makedirs(results_dir)
+            break
+        index += 1
+
+    print(f"Results will be saved in {results_dir}")
 
     # Load datasets
     training_data = load_data(config["training_file"])
@@ -85,32 +96,43 @@ def main():
         )
         trained_models.append(best_model)
 
+    # Save trained models if configured
+    if config["save_models"]:
+        models_path = os.path.join(results_dir, "trained_models.pth")
+        torch.save(trained_models, models_path)
+        print(f"All trained models saved to {models_path}")
+
     # Compute precision matrix
     evaluator = PrecisionMatrixComputer(trained_models, test_data, config["num_features"])
     precision_matrix = evaluator.compute()
-    plot_path = os.path.join("results", "butterfly_plots.png")
-    evaluator.visualize(precision_matrix, title="Butterfly Experiment Precision Matrix")
-    plt.savefig(plot_path)
-
-    transpose_matrix = precision_matrix.T 
-    symmetric_matrix = (transpose_matrix + precision_matrix) / 2
-
-    symmetric_precision_matrix = symmetric_matrix / np.max(symmetric_matrix)
-    np.fill_diagonal(symmetric_precision_matrix, 1)
+    symmetric_precision_matrix = evaluator.make_symmetric(precision_matrix)
 
     # Save precision matrix as a .txt file
-    matrix_path = os.path.join("results", "butterfly_matrix.txt")
+    matrix_path = os.path.join(results_dir, "precision_matrix.txt")
     np.savetxt(matrix_path, symmetric_precision_matrix, fmt="%.6f", delimiter=",")
     print(f"Precision matrix saved to {matrix_path}")
 
     # Visualize precision matrix
-    plot_path = os.path.join("results", "butterfly_plots_normalized.png")
-    evaluator.visualize(symmetric_precision_matrix, title="Butterfly Experiment Precision Matrix")
+    plot_path = os.path.join(results_dir, "precision_matrix_normalized.png")
+    evaluator.visualize(symmetric_precision_matrix, title="Experiment Precision Matrix")
     plt.savefig(plot_path)
 
-    # Log results
-    with open(os.path.join("results", "log.txt"), "w") as log_file:
-        log_file.write(f"Experiment completed.\nPrecision matrix saved to {matrix_path}.\n")
+    # Log results and config details
+    log_path = os.path.join(results_dir, "log.txt")
+    with open(log_path, "w") as log_file:
+        log_file.write("Experiment Log\n")
+        log_file.write("=" * 50 + "\n")
+        log_file.write(f"Results Directory: {results_dir}\n")
+        log_file.write(f"Precision Matrix File: {matrix_path}\n")
+        log_file.write(f"Normalized Precision Matrix Plot: {plot_path}\n")
+        if config["save_models"]:
+            log_file.write(f"Trained Models File: {models_path}\n")
+        log_file.write("\nConfiguration Details:\n")
+        log_file.write("=" * 50 + "\n")
+        for key, value in config.items():
+            log_file.write(f"{key}: {value}\n")
+        log_file.write("=" * 50 + "\n")
+    print(f"Log saved to {log_path}")
 
 
 if __name__ == "__main__":

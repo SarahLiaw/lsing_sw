@@ -1,0 +1,25 @@
+Experiment Log
+==================================================
+Results Directory: res/BF_0
+Precision Matrix File: res/BF_0/precision_matrix.txt
+Normalized Precision Matrix Plot: res/BF_0/precision_matrix_normalized.png
+Trained Models File: res/BF_0/trained_models.pth
+
+Configuration Details:
+==================================================
+experiment_name: BF
+save_models: True
+train_size: 200
+validation_size: 1000
+test_size: 1000
+num_features: 4
+training_file: data/butterfly/bf_trn_500_4d.txt
+validation_file: data/butterfly/bf_val_500_4d.txt
+testing_file: data/butterfly/bf_tst_500_4d.txt
+hidden_layers: [8, 8]
+num_steps: 50
+learning_rate: 0.01
+max_epochs: 100
+regularizations: [1, 0.1]
+results_path: res
+==================================================

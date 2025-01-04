@@ -19,6 +19,9 @@
 # # Output settings
 # results_path: "res"
 
+# Experiment settings
+experiment_name: "BF"
+save_models: true
 
 # Data settings
 train_size: 200

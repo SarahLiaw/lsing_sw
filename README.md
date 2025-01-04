@@ -1,6 +1,3 @@
-TODO: Finish this tmr and check reqs whether it is most updated.
-
-
 # L-SING
 Learning local neighborhoods of non-Gaussian graphical models  
 **Accepted at AAAI'25**
@@ -29,15 +26,50 @@ We conducted three primary experiments to evaluate the performance and versatili
 ---
 
 ## Usage Instructions
-To execute the experiments:
 
-1. Verify that all paths in the configuration files are correctly set.
-2. Navigate to the respective folders (`butterfly/`, `gaussian/`, or `ovarian/`) and execute the experiment scripts provided in each directory. Paths are relative to the folder structure.
-3. Modify UMNN parameters (e.g., hidden layers, steps) as needed to explore alternative configurations.
+This repository includes examples of differently parameterized UMNNs to replicate results described in the AAAI'25 submission. For detailed experiment configurations (e.g., regularization values, specific UMNN architectures) in our paper, refer to the **technical appendix** in arxiv.
 
-This repository includes examples of differently parameterized UMNNs to replicate results described in the AAAI'25 submission in prev_exp.
 
-For detailed experiment configurations (e.g., regularization values, specific UMNN architectures), refer to the **technical appendix** in arxiv.
+### Running an Experiment
+To execute an experiment, follow these steps:
+
+1. **Ensure Configuration Files Are Correct**:
+   - Modify the paths in the `config.yaml` file to point to the correct dataset files (`training_file`, `validation_file`, `testing_file`) and desired output directory (`results_path`).
+   - Each experiment's script (e.g., `run_butterfly.py`) reads the paths directly from `config.yaml`.
+
+2. **Run the Experiment Script**:
+   - Navigate to the main project directory.
+   - Run the experiment script using:
+     ```bash
+     python -m experiments.butterfly.run_butterfly
+     ```
+   - Replace `butterfly` with the appropriate experiment name for other experiments (e.g., `gaussian`, `ovarian`).
+
+3. **Check Results**:
+   - Results, including the precision matrix, model files, and plots, will be saved in a uniquely indexed folder within the `results/` directory (e.g., `results/BF0/` for the first experiment run).
+   - The experiment configuration used for the run is also logged in `log.txt` within the results folder.
+
+---
+
+### Modifying Configurations
+The `config.yaml` file allows you to customize parameters for each experiment:
+
+- **Dataset Paths**:
+  - Update `training_file`, `validation_file`, and `testing_file` to point to your generated `.txt` or `.csv` dataset files.
+
+- **UMNN Parameters**:
+  - Adjust `hidden_layers`, `num_steps`, and other model-related settings as needed.
+
+- **Regularization and Training**:
+  - Modify `regularizations`, `learning_rate`, and `max_epochs` to explore alternative setups.
+
+---
+
+### Checking Experiment Logs
+After running an experiment, the corresponding `log.txt` file in the results directory will include:
+
+- The configuration used for the run.
+- Paths to the saved precision matrix, plots, and models.
 
 
 ---

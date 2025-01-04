@@ -78,6 +78,24 @@ class PrecisionMatrixComputer:
             precision_matrix.append(row)
         return np.array(precision_matrix)
 
+
+    def make_symmetric(self, precision_matrix):
+        """
+        Converts the precision matrix into a symmetric, normalized matrix.
+
+        Args:
+            precision_matrix (np.ndarray): The computed precision matrix.
+
+        Returns:
+            np.ndarray: Symmetric, normalized precision matrix.
+        """
+        transpose_matrix = precision_matrix.T
+        symmetric_matrix = (transpose_matrix + precision_matrix) / 2
+        normalized_matrix = symmetric_matrix / np.max(symmetric_matrix)
+        np.fill_diagonal(normalized_matrix, 1)
+        return normalized_matrix
+
+
     @staticmethod
     def visualize(matrix, title="Precision Matrix Visualization"):
         """

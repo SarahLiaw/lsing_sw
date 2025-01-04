@@ -5,22 +5,23 @@ Learning local neighborhoods of non-Gaussian graphical models
 ---
 
 ## Overview
-L-SING (Learning Local Neighborhoods of Non-Gaussian Graphical Models) is a novel approach for modeling non-Gaussian graphical structures. This repository includes the codebase and experiment scripts used for our AAAI'25 submission.
+L-SING (Localized Sparsity Identification for Non-Gaussian Distributions) solves a graph recovery problem: given $n$ i.i.d. from an (unspecified and possibly non-Gaussian) probability distribution, L-SING recovers the local neighborhood structure (local Markov properties) of each variable in the graph.
+
+This repository includes the codebase and experiment scripts used for our AAAI'25 submission.
 
 ---
 
 ## Experiments
-We conducted three primary experiments to evaluate the performance and versatility of L-SING:
+We conducted three primary experiments to evaluate the performance of L-SING:
 
-1. **Butterfly Distribution**  
-   A synthetic experiment showcasing L-SING's ability to learn complex distributions with localized dependencies.
+1. **Butterfly Distribution (Non-Gaussian)**  
+   - A synthetic experiment to show L-SING's ability to learn complex distributions with localized dependencies. We explain how the butterfly distribution is generated in the arxiv submission. 
 
-2. **Gaussian Distribution**  
-   - Pre-processing and generation of training, validation, and test datasets are included.
+2. **Gaussian Distribution**
    - Demonstrates L-SING's compatibility with Gaussian distributions for benchmarking purposes.
 
 3. **Ovarian Cancer Dataset**  
-   - Derived from the `curatedOvarianPackage` in R.
+   - From the `curatedOvarianPackage` in R.
    - The dataset was pre-processed following the methodology outlined by Shutta et al. (2022) for direct comparison between GLASSO and localized L-SING methods.
 
 ---
@@ -58,10 +59,10 @@ The `config.yaml` file allows you to customize parameters for each experiment:
   - Update `training_file`, `validation_file`, and `testing_file` to point to your generated `.txt` or `.csv` dataset files.
 
 - **UMNN Parameters**:
-  - Adjust `hidden_layers`, `num_steps`, and other model-related settings as needed.
+  - Adjust `hidden_layers`, `num_steps`, and other model-related settings as wanted.
 
 - **Regularization and Training**:
-  - Modify `regularizations`, `learning_rate`, and `max_epochs` to explore alternative setups.
+  - Change/Update `regularizations`, `learning_rate`, and `max_epochs` for alternative experimental setups.
 
 ---
 
@@ -69,8 +70,7 @@ The `config.yaml` file allows you to customize parameters for each experiment:
 After running an experiment, the corresponding `log.txt` file in the results directory will include:
 
 - The configuration used for the run.
-- Paths to the saved precision matrix, plots, and models.
-
+- Paths to the saved precision matrix, precision matrix, and models.
 
 ---
 

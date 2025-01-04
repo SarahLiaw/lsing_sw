@@ -1,20 +1,42 @@
+# # Data settings
+# train_size: 5000
+# validation_size: 10000
+# test_size: 10000
+# num_features: 10
+# training_file: "data/butterfly/bf_trn_5000_10d.txt"
+# validation_file: "data/butterfly/bf_val_10000_10d.txt"
+# testing_file: "data/butterfly/bf_tst_10000_10d.txt"
+
+# # Model settings
+# hidden_layers: [16, 32, 8]
+# num_steps: 50
+
+# # Training settings
+# learning_rate: 0.01
+# max_epochs: 100
+# regularizations: [1, 0.1, 0.01, 0.001]
+
+# # Output settings
+# results_path: "res"
+
+
 # Data settings
-train_size: 5000
+train_size: 200
 validation_size: 1000
 test_size: 1000
-num_features: 10
-training_file: "../../data/butterfly/bf_trn_5000_10d.txt"
-validation_file: "../../data/butterfly/bf_val_10000_10d.txt"
-testing_file: "../../data/butterfly/bf_tst_10000_10d.txt"
+num_features: 4
+training_file: "data/butterfly/bf_trn_500_4d.txt"
+validation_file: "data/butterfly/bf_val_500_4d.txt"
+testing_file: "data/butterfly/bf_tst_500_4d.txt"
 
 # Model settings
-hidden_layers: [16, 32, 8]
+hidden_layers: [8, 8]
 num_steps: 50
 
 # Training settings
 learning_rate: 0.01
 max_epochs: 100
-regularizations: [1, 0.1, 0.01, 0.001]
+regularizations: [1, 0.1]
 
 # Output settings
 results_path: "res"

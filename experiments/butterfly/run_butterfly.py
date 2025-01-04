@@ -5,8 +5,10 @@ import numpy as np
 from src.trainers.map_trainer import MapTrainer
 from src.evaluators.precision_matrix_computer import PrecisionMatrixComputer
 from models.UMNN import MonotonicNN
-
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+
 import yaml
 
 
@@ -50,7 +52,8 @@ def main():
     - Saves results (matrix and plots) to the output directory.
     """
     # Load configuration
-    config = load_config("config.yaml")
+    config_path = os.path.join(os.path.dirname(__file__), "config.yaml")
+    config = load_config(config_path)
     os.makedirs("results", exist_ok=True)
 
     # Load datasets
@@ -60,7 +63,7 @@ def main():
 
     # Initialize fixed map for each feature
     base_map = [
-        MonotonicNN(config["num_features"] - 1, config["hidden_layers"], config["num_steps"], "cpu")
+        MonotonicNN(config["num_features"], config["hidden_layers"], config["num_steps"], "cpu")
         for _ in range(config["num_features"])
     ]
 
@@ -85,14 +88,24 @@ def main():
     # Compute precision matrix
     evaluator = PrecisionMatrixComputer(trained_models, test_data, config["num_features"])
     precision_matrix = evaluator.compute()
-
-    # Save precision matrix
-    matrix_path = os.path.join("results", "butterfly_matrix.npy")
-    np.save(matrix_path, precision_matrix)
-
-    # Visualize precision matrix
     plot_path = os.path.join("results", "butterfly_plots.png")
     evaluator.visualize(precision_matrix, title="Butterfly Experiment Precision Matrix")
+    plt.savefig(plot_path)
+
+    transpose_matrix = precision_matrix.T 
+    symmetric_matrix = (transpose_matrix + precision_matrix) / 2
+
+    symmetric_precision_matrix = symmetric_matrix / np.max(symmetric_matrix)
+    np.fill_diagonal(symmetric_precision_matrix, 1)
+
+    # Save precision matrix as a .txt file
+    matrix_path = os.path.join("results", "butterfly_matrix.txt")
+    np.savetxt(matrix_path, symmetric_precision_matrix, fmt="%.6f", delimiter=",")
+    print(f"Precision matrix saved to {matrix_path}")
+
+    # Visualize precision matrix
+    plot_path = os.path.join("results", "butterfly_plots_normalized.png")
+    evaluator.visualize(symmetric_precision_matrix, title="Butterfly Experiment Precision Matrix")
     plt.savefig(plot_path)
 
     # Log results

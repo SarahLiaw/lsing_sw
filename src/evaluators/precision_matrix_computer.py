@@ -88,9 +88,12 @@ class PrecisionMatrixComputer:
             title (str): Title for the plot.
         """
         plt.figure(figsize=(8, 6))
+        plt.xticks(np.arange(0, len(matrix), 1), np.arange(1, len(matrix) + 1))
+        plt.yticks(np.arange(0, len(matrix), 1), np.arange(1, len(matrix) + 1))
         plt.imshow(matrix, cmap='gray', interpolation='nearest')
+
+        for i in range(len(matrix)):
+            for j in range(len(matrix[0])):
+                plt.text(j, i, f'{matrix[i, j]:.3f}', ha='center', va='center', color='white')
+
         plt.colorbar()
-        plt.title(title)
-        plt.xlabel("Features")
-        plt.ylabel("Features")
-        plt.show()

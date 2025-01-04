@@ -29,7 +29,7 @@ def generate_butterfly(num_samples, num_pairs):
     return samples
 
 
-def save_dataset(dataset, output_dir, dataset_type, num_samples, num_pairs):
+def save_dataset(dataset, output_dir, dataset_type, num_samples, num_features):
     """
     Saves the generated dataset to a text file.
 
@@ -37,10 +37,15 @@ def save_dataset(dataset, output_dir, dataset_type, num_samples, num_pairs):
         dataset (torch.Tensor): Generated dataset.
         output_dir (str): Directory to save the dataset.
         dataset_type (str): Type of dataset (e.g., 'training', 'validation', 'testing').
+        num_samples (int): Number of samples in the dataset.
+        num_features (int): Number of features in the dataset.
     """
-    os.makedirs(output_dir, exist_ok=True)
-    output_path = os.path.join(output_dir, f"butterfly/bf_{dataset_type}_{num_samples}_{num_pairs * 2}d.txt")
-    
+    # Ensure output directory exists
+    full_output_dir = os.path.join(output_dir, "gauss")
+    os.makedirs(full_output_dir, exist_ok=True)
+
+    # Save the dataset to a file
+    output_path = os.path.join(full_output_dir, f"g_{dataset_type}_{num_samples}_{num_features}d.txt")
     np.savetxt(output_path, dataset.numpy(), fmt="%.8f", delimiter=",")
     print(f"{dataset_type.capitalize()} dataset saved to {output_path}")
 

@@ -42,4 +42,4 @@ max_epochs: 100
 regularizations: [1, 0.1]
 
 # Output settings
-results_path: "res"
+results_path: "results"

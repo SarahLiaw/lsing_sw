@@ -51,11 +51,10 @@ def main():
     - Optionally saves trained models.
     - Saves results (matrix and plots) to a uniquely indexed directory.
     """
-    # Load configuration
+    
     config_path = os.path.join(os.path.dirname(__file__), "config.yaml")
     config = load_config(config_path)
 
-    # Create uniquely indexed results subdirectory
     base_results_path = config["results_path"]
     index = 0
     while True:
@@ -96,7 +95,7 @@ def main():
         )
         trained_models.append(best_model)
 
-    # Save trained models if configured
+    # Save trained models, if configured
     if config["save_models"]:
         models_path = os.path.join(results_dir, "trained_models.pth")
         torch.save(trained_models, models_path)
@@ -107,7 +106,6 @@ def main():
     precision_matrix = evaluator.compute()
     symmetric_precision_matrix = evaluator.make_symmetric(precision_matrix)
 
-    # Save precision matrix as a .txt file
     matrix_path = os.path.join(results_dir, "precision_matrix.txt")
     np.savetxt(matrix_path, symmetric_precision_matrix, fmt="%.6f", delimiter=",")
     print(f"Precision matrix saved to {matrix_path}")

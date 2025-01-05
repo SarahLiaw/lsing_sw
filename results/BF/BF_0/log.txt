@@ -1,9 +1,9 @@
 Experiment Log
 ==================================================
-Results Directory: results/BF_0
-Precision Matrix File: results/BF_0/precision_matrix.txt
-Normalized Precision Matrix Plot: results/BF_0/precision_matrix_normalized.png
-Trained Models File: results/BF_0/trained_models.pth
+Results Directory: results/BF/BF_0
+Precision Matrix File: results/BF/BF_0/precision_matrix.txt
+Normalized Precision Matrix Plot: results/BF/BF_0/precision_matrix_normalized.png
+Trained Models File: results/BF/BF_0/trained_models.pth
 
 Configuration Details:
 ==================================================
@@ -21,5 +21,5 @@ num_steps: 50
 learning_rate: 0.01
 max_epochs: 100
 regularizations: [1, 0.1]
-results_path: results
+results_path: results/BF
 ==================================================

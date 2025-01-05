@@ -9,7 +9,6 @@ L-SING (Localized Sparsity Identification for Non-Gaussian Distributions) solves
 Sarah Liaw, Rebecca Morrison, Youssef Marzouk, Ricardo Baptista  
 Correspondence to: [sliaw@caltech.edu](mailto:sliaw@caltech.edu)
 
-
 ---
 
 ## Experiments
@@ -29,9 +28,9 @@ We conducted three primary experiments to evaluate the performance of L-SING:
 
 ---
 
-## Usage Instructions
+## Usage
 
-This repository includes examples of differently parameterized UMNNs to replicate results described in the AAAI'25 submission. For detailed experiment configurations (e.g., regularization values, specific UMNN architectures) in our paper, refer to the **technical appendix** in arxiv.
+This repo includes examples of differently parameterized UMNNs to replicate results described in the AAAI'25 submission. For detailed experiment configurations (e.g., regularization values, specific UMNN architectures) in our paper, refer to the **technical appendix** in arxiv.
 
 
 ### Running an Experiment
@@ -55,7 +54,7 @@ To execute an experiment, follow these steps:
 
 ---
 
-### Modifying Configurations
+### Changing Configurations
 The `config.yaml` file allows you to customize parameters for each experiment:
 
 - **Dataset Paths**:
@@ -69,7 +68,7 @@ The `config.yaml` file allows you to customize parameters for each experiment:
 
 ---
 
-### Checking Experiment Logs
+### Experiment Logs
 After running an experiment, the corresponding `log.txt` file in the results directory will include:
 
 - The configuration used for the run.

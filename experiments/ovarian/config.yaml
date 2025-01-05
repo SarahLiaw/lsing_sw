@@ -12,13 +12,13 @@ validation_file: "data/ovarian/validation.txt"
 testing_file: "data/ovarian/test.txt"
 
 # Model settings
-hidden_layers: [8, 8]
+hidden_layers: [16, 16, 16]
 num_steps: 50
 
 # Training settings
 learning_rate: 0.01
 max_epochs: 100
-regularizations: [1, 0.1]
+regularizations: [1, 0.1, 0.01, 0.001, 0]
 
 # Output settings
 results_path: "results/OC"

@@ -40,18 +40,15 @@ def save_dataset(dataset, output_dir, dataset_type, num_samples, num_features):
         num_samples (int): Number of samples in the dataset.
         num_features (int): Number of features in the dataset.
     """
-    # Ensure output directory exists
     full_output_dir = os.path.join(output_dir, "gauss")
     os.makedirs(full_output_dir, exist_ok=True)
 
-    # Save the dataset to a file
     output_path = os.path.join(full_output_dir, f"g_{dataset_type}_{num_samples}_{num_features}d.txt")
     np.savetxt(output_path, dataset.numpy(), fmt="%.8f", delimiter=",")
     print(f"{dataset_type.capitalize()} dataset saved to {output_path}")
 
 
 def main():
-    # Parse command-line arguments
     parser = argparse.ArgumentParser(description="Generate Butterfly datasets.")
     parser.add_argument("--dataset_type", type=str, required=True,
                         choices=["trn", "val", "tst"],

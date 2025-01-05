@@ -66,7 +66,6 @@ def main():
 
     print(f"Results will be saved in {results_dir}")
 
-    # Load datasets
     training_data = load_data(config["training_file"])
     validation_data = load_data(config["validation_file"])
     test_data = load_data(config["testing_file"])

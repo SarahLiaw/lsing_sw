@@ -7,7 +7,7 @@ from models.UMNN import MonotonicNN
 @pytest.fixture
 def mock_data():
     test_data = torch.rand((50, 10))
-    trained_models = [MonotonicNN(9, [16, 32], 50, 'cpu') for _ in range(10)]
+    trained_models = [MonotonicNN(10, [16, 32], 50, 'cpu') for _ in range(10)]
     return test_data, trained_models
 
 def test_compute_precision_matrix(mock_data):

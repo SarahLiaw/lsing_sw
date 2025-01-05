@@ -1,0 +1,24 @@
+# Experiment settings
+experiment_name: "OC"
+save_models: true
+
+# Data settings
+train_size: 200
+validation_size: 1000
+test_size: 1000
+num_features: 4
+training_file: "data/butterfly/test.txt"
+validation_file: "data/ovarian/validation.txt"
+testing_file: "data/ovarian/test.txt"
+
+# Model settings
+hidden_layers: [8, 8]
+num_steps: 50
+
+# Training settings
+learning_rate: 0.01
+max_epochs: 100
+regularizations: [1, 0.1]
+
+# Output settings
+results_path: "results"

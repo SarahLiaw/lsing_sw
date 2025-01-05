@@ -1,0 +1,24 @@
+# Experiment settings
+experiment_name: "G"
+save_models: true
+
+# Data settings
+train_size: 200
+validation_size: 1000
+test_size: 1000
+num_features: 4
+training_file: "data/gauss/g_trn_500_4d.txt"
+validation_file: "data/gauss/g_val_500_4d.txt"
+testing_file: "data/gauss/g_tst_500_4d.txt"
+
+# Model settings
+hidden_layers: [8, 8]
+num_steps: 50
+
+# Training settings
+learning_rate: 0.01
+max_epochs: 100
+regularizations: [1, 0.1]
+
+# Output settings
+results_path: "results"

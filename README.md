@@ -7,7 +7,7 @@ Learning local neighborhoods of non-Gaussian graphical models
 ## Overview
 L-SING (Localized Sparsity Identification for Non-Gaussian Distributions) solves a graph recovery problem: given $n$ i.i.d. from an (unspecified and possibly non-Gaussian) probability distribution, L-SING recovers the local neighborhood structure (local Markov properties) of each variable in the graph.
 
-This repository includes the codebase and experiment scripts used for our AAAI'25 submission.
+This repository includes the codebase and experiment scripts used for our AAAI'25 submission. Note that unit tests are still being worked on right now.
 
 ---
 

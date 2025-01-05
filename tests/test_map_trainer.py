@@ -7,7 +7,7 @@ from models.UMNN import MonotonicNN
 def mock_data():
     training_data = torch.rand((100, 10))
     validation_data = torch.rand((50, 10))
-    base_map = [MonotonicNN(9, [16, 32], 50, 'cpu') for _ in range(10)]
+    base_map = [MonotonicNN(10, [16, 32], 50, 'cpu') for _ in range(10)]
     return training_data, validation_data, base_map
 
 def test_train_model(mock_data):

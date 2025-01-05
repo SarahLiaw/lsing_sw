@@ -12,7 +12,7 @@ Correspondence to: [sliaw@caltech.edu](mailto:sliaw@caltech.edu)
 ---
 
 ## Experiments
-This repository includes the codebase and experiment scripts used for our AAAI'25 submission. Note that unit tests are still being worked on right now.
+This repo includes the codebase and experiment scripts used for our AAAI'25 submission. Note that unit tests are still being worked on right now.
 
 We conducted three primary experiments to evaluate the performance of L-SING:
 
@@ -48,7 +48,7 @@ To execute an experiment, follow these steps:
      ```
    - Replace `butterfly` with the appropriate experiment name for other experiments (e.g., `gaussian`, `ovarian`).
 
-3. **Check Results**:
+3. **Results**:
    - Results, including the precision matrix, model files, and plots, will be saved in a uniquely indexed folder within the `results/` directory (e.g., `results/BF0/` for the first experiment run).
    - The experiment configuration used for the run is also logged in `log.txt` within the results folder.
 

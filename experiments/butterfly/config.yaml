@@ -39,7 +39,7 @@ num_steps: 50
 # Training settings
 learning_rate: 0.01
 max_epochs: 100
-regularizations: [1, 0.1]
+regularizations: [1, 0.1, 0.01, 0.001, 0]
 
 # Output settings
 results_path: "results/BF"

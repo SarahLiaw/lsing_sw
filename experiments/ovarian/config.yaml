@@ -7,7 +7,7 @@ train_size: 200
 validation_size: 1000
 test_size: 1000
 num_features: 4
-training_file: "data/butterfly/test.txt"
+training_file: "data/ovarian/test.txt"
 validation_file: "data/ovarian/validation.txt"
 testing_file: "data/ovarian/test.txt"
 

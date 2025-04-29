@@ -1,7 +1,8 @@
 # L-SING
 Learning local neighborhoods of non-Gaussian graphical models  
 **Accepted at AAAI'25**
-
+Arxiv: https://arxiv.org/abs/2503.13899
+AAAI: https://ojs.aaai.org/index.php/AAAI/article/view/34059/36214
 ## Overview
 L-SING (Localized Sparsity Identification for Non-Gaussian Distributions) solves a graph recovery problem: given $n$ i.i.d. from an (unspecified and possibly non-Gaussian) probability distribution, L-SING recovers the local neighborhood structure (local Markov properties) of each variable in the graph.
 
@@ -94,3 +95,18 @@ The UMNN model implementation in this repository is adapted from the official so
 [https://github.com/AWehenkel/UMNN](https://github.com/AWehenkel/UMNN).
 
 For further inquiries or clarifications, please refer to our **technical appendix** or contact the authors.
+
+
+## Citations
+If you using L-SING in an academic paper, please cite:
+
+@misc{liaw2025learninglocalneighborhoodsnongaussian,
+      title={Learning local neighborhoods of non-Gaussian graphical models: A measure transport approach}, 
+      author={Sarah Liaw and Rebecca Morrison and Youssef Marzouk and Ricardo Baptista},
+      year={2025},
+      eprint={2503.13899},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2503.13899}, 
+}
+
